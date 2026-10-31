@@ -2,6 +2,10 @@
 
 Marketplace de NFTs em React + TypeScript (desafio frontend). Catálogo, detalhe, carrinho, pagamento, recibo, login/cadastro, perfil e carteiras, com **API, autenticação, carteiras e pagamentos simulados no navegador via MSW** (sem backend). O tempo real usa `socket.io-client` contra um servidor Socket.IO simulado, também via MSW.
 
+## VERCEL
+
+https://kurio-three.vercel.app
+
 ## Stack
 
 | Responsabilidade              | Tecnologia                                            |
