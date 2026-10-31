@@ -1,0 +1,144 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* tokens do shadcn com a paleta Kurio (app só escuro) */
+:root,
+.dark {
+  --background: #1a100b;
+  --foreground: #f3e9dc;
+  --card: #24170f;
+  --card-foreground: #f3e9dc;
+  --popover: #24170f;
+  --popover-foreground: #f3e9dc;
+  --primary: #d98b4a;
+  --primary-foreground: #1a100b;
+  --secondary: #2e1e14;
+  --secondary-foreground: #f3e9dc;
+  --muted: #d3c1a8;
+  --muted-foreground: #b9a58f;
+  --accent: #d98b4a;
+  --accent-foreground: #1a100b;
+  --destructive: #f87171;
+  --border: #3d291b;
+  --input: #3d291b;
+  --ring: #d98b4a;
+  --radius: 0.5rem; /* reproduz a escala padrão do Tailwind: sm 4px, md 6px, lg 8px */
+}
+
+@theme {
+  --font-sans: "JetBrains Mono", ui-monospace, monospace;
+  --color-surface: #24170f;
+  --color-surface-2: #2e1e14;
+  --animate-shimmer: shimmer 1.6s infinite;
+  @keyframes shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-bg: var(--background); /* aliases das classes já usadas */
+  --color-fg: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-surface-2) 50%,
+    var(--color-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* slider de faixa dupla (PriceRange) */
+.range-dual {
+  position: relative;
+  height: 16px;
+}
+.range-dual input[type="range"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.range-dual input[type="range"]::-webkit-slider-runnable-track {
+  background: transparent;
+}
+.range-dual input[type="range"]::-moz-range-track {
+  background: transparent;
+}
+.range-dual input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  border: 0;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+.range-dual input[type="range"]::-moz-range-thumb {
+  pointer-events: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  border: 0;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+.range-dual input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}
+.range-dual input[type="range"]:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}
